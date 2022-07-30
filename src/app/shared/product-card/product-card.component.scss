@@ -1,0 +1,9 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+
+.card{
+    background-color: theme-color("primary")
+
+}
