@@ -2,8 +2,11 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
-
-.card{
-    background-color: theme-color("primary")
-
+.card {
+  max-width: 400px;
+  margin: auto;
+  .card-img-top {
+    height: 300px;
+    object-fit: cover;
+  }
 }
