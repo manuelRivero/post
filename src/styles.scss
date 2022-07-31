@@ -9,11 +9,13 @@
 
 // Create your own map
 $custom-colors: (
-  "brand-color": rgb(0, 92, 153)
-);
+  "brand-color": rgb(0, 92, 153),
+  );
+  
+  $theme-colors: (
+    "primary": rgb(103, 116, 161),
+    "secondary": rgb(190, 32, 177)
 
-$theme-colors: (
-  "primary": rgb(0, 153, 145),
 );
 
 *{
