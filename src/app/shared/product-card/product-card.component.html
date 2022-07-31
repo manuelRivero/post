@@ -5,7 +5,7 @@
     <p class="card-text">
       {{ data.text }}
     </p>
-    <a routerLink="['/detalle-receta', data.id]">
+    <a [routerLink]="['/detalle-receta', data.id]">
       <app-button type="secondary"></app-button>
     </a>
   </div>
