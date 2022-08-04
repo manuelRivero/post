@@ -1,7 +1,9 @@
-<section class="home">
-  <div class="home__container">
-    <div class="" *ngFor="let card of cards">
-        <app-product-card [data]="card"></app-product-card>
+<app-hero-section>
+  <section class="home">
+    <div class="home__container">
+      <div class="" *ngFor="let card of cards">
+          <app-product-card [data]="card"></app-product-card>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</app-hero-section>
