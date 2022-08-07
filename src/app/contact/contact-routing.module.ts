@@ -5,7 +5,7 @@ import { ContactComponent } from './contact.component';
 
 const routes: Routes = [
     {path:"", component: ContactComponent, children:[
-      {path:"comentarios", component: CommentsComponent}
+      {path:"comentarios", component: CommentsComponent, data:{animation: 'fade'}},
     ]}
 ];
 

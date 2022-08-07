@@ -44,6 +44,10 @@ export class MediaModalComponent implements OnInit, OnChanges {
       this.open();
     } else {
       this.modalService.dismissAll();
+      this.image = null;
+      this.form.controls['file'].setValue('');
+      this.form.controls['text'].setValue('');
+
     }
   }
   submit() {

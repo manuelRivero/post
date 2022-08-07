@@ -6,8 +6,8 @@ import { LogInComponent } from './log-in/log-in.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"login", pathMatch:"full"},
-  {path:"login", component: LogInComponent},
-  {path:"register", component: RegisterComponent}
+  {path:"login", component: LogInComponent, data: { animation: 'fade' }},
+  {path:"register", component: RegisterComponent, data: { animation: 'fade' }}
 
 ];
 
