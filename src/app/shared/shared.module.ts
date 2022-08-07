@@ -6,6 +6,7 @@ import { PostCardComponent } from './post-card/post-card.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
+import { UserAvatarComponent } from './user-avatar/user-avatar.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { HeroSectionComponent } from './hero-section/hero-section.component';
     PostCardComponent,
     HeaderComponent,
     HeroSectionComponent,
+    UserAvatarComponent,
   ],
   imports: [CommonModule, RouterModule, HttpClientModule],
   exports: [

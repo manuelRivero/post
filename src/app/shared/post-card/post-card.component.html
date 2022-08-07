@@ -1,4 +1,7 @@
 <div class="card bg-custom-color w-full">
+  <div class="card-header bg-brand-color">
+    <app-user-avatar [showName]="true"></app-user-avatar>
+  </div>
   <img [src]="data.image" class="card-img-top" alt="..." />
   <div class="card-body">
     <h5 class="card-title">{{ data.title }}</h5>
@@ -6,15 +9,26 @@
       {{ data.text }}
     </p>
     <div class="reaction-menu-wrapper">
-      <div class="reaction-menu">
-        <i class="bi bi-emoji-laughing"></i>
-        <i class="bi bi-emoji-frown"></i>
-        <i class="bi bi-emoji-heart-eyes"></i>
-        <i class="bi bi-emoji-dizzy"></i>
-
+      <div *ngIf="showMenu" class="reaction-menu">
+        <div *ngIf="!isLoading; else loader" #menu >
+          <i class="bi bi-emoji-laughing" (click)="toggleLoading(1)"></i>
+          <i class="bi bi-emoji-frown" (click)="toggleLoading(2)"></i>
+          <i class="bi bi-emoji-heart-eyes" (click)="toggleLoading(3)"></i>
+          <i class="bi bi-emoji-dizzy" (click)="toggleLoading(4)"></i>
+        </div>
+        <ng-template #loader>
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </ng-template>
       </div>
-      <i class="bi bi-hand-thumbs-up "></i>
-    </div>
 
+      <i *ngIf="!reaction" (click)="toggleMenu()" #toggleButton class="bi bi-hand-thumbs-up"></i>
+      <i *ngIf="reaction === 1" (click)="toggleMenu()" #toggleButton class="bi bi-emoji-laughing" [ngStyle]="{color: 'rgb(0, 81, 255)'}"></i>
+      <i *ngIf="reaction === 2" (click)="toggleMenu()" #toggleButton class="bi bi-emoji-frown" [ngStyle]="{color: 'rgb(0, 81, 255)'}"></i>
+      <i *ngIf="reaction === 3" (click)="toggleMenu()" #toggleButton class="bi bi-emoji-heart-eyes" [ngStyle]="{color: 'rgb(0, 81, 255)'}"></i>
+      <i *ngIf="reaction === 4" (click)="toggleMenu()" #toggleButton class="bi bi-emoji-dizzy" [ngStyle]="{color: 'rgb(0, 81, 255)'}"></i>
+
+    </div>
   </div>
 </div>
