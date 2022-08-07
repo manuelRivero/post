@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from './../auth.service';
 import { Component } from '@angular/core';
 import {
@@ -17,12 +19,17 @@ import { CustomValidators } from './custom.validators';
 })
 export class RegisterComponent {
   form: FormGroup;
-  constructor(private authService:AuthService) {
+  formError$: Observable<any> = this.authService.registerError$;
+  constructor(private authService: AuthService, private router: Router) {
     this.form = new FormGroup(
       {
         name: new FormControl(
           '',
-          Validators.compose([Validators.required, Validators.minLength(3), CustomValidators.onlyChar()])
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(3),
+            CustomValidators.onlyChar(),
+          ])
         ),
         email: new FormControl(
           '',
@@ -34,8 +41,7 @@ export class RegisterComponent {
         ),
         confirmPassword: new FormControl('', [Validators.required]),
       },
-     { validators: [CustomValidators.passwordMatchValidator] }
-      
+      { validators: [CustomValidators.passwordMatchValidator] }
     );
   }
 
@@ -47,7 +53,14 @@ export class RegisterComponent {
   }
   onSubmit() {
     console.log(this.form.value);
-    this.authService.register(this.form.value);
+    this.authService.register(this.form.value).subscribe((res: any) => {
+      this.authService.user = { name: res.name, email: 'res.email' };
+      this.router.navigate(['/']);
+    }, (error) => {
+      console.log("error", error)
+      this.authService.registerError = "error";
+      this.router.navigate(['/']);
+
+    });
   }
-  
 }
