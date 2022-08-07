@@ -1,6 +1,12 @@
 <div class="avatar">
     <img src="assets/shared/avatar.png" class="avatar__image" alt="..." />
-    <div *ngIf="showName">
-        <p>Nombres y apellidos</p>
+    <div>
+        <div *ngIf="showName">
+            <p>Nombres y apellidos</p>
+        </div>
+        <div *ngIf="showDate">
+            <p>hace 3 horas</p>
+        </div>
+
     </div>
 </div>

@@ -7,6 +7,8 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 })
 export class UserAvatarComponent implements OnInit {
   @Input() showName:boolean=false
+  @Input() showDate:boolean=false
+
   constructor() { }
 
   ngOnInit(): void {
@@ -14,6 +16,9 @@ export class UserAvatarComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if(changes['showName']){
       this.showName= changes['showName'].currentValue;
+    }
+    if(changes['showDate']){
+      this.showDate= changes['showDate'].currentValue;
     }
   }
 
