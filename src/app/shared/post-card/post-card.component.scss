@@ -1,0 +1,40 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.card {
+  max-width: 400px;
+  margin: auto;
+  .card-img-top {
+    height: 300px;
+    object-fit: cover;
+  }
+  .bi-hand-thumbs-up{
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all .3;
+    &:hover{
+      color:rgb(0, 81, 255)
+    }
+  }
+  .reaction-menu-wrapper{
+    position: relative;
+  }
+  .reaction-menu{
+    position: absolute;
+    top: 0;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    transform: translateY(-100%) ;
+    & > i {
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all .3;
+      &:hover{color:rgb(0, 81, 255)}
+    }
+  }
+}

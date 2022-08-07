@@ -7,11 +7,11 @@ interface Data {
   id: string;
 }
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+  selector: 'app-post-card',
+  templateUrl: './post-card.component.html',
+  styleUrls: ['./post-card.component.scss']
 })
-export class ProductCardComponent implements OnInit {
+export class PostCardComponent implements OnInit {
   @Input() data:Data ={
     title: "",
     text: "",
