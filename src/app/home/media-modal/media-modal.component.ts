@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
   Input,
@@ -20,28 +21,56 @@ export class MediaModalComponent implements OnInit, OnChanges {
   @Output() hasToClose = new EventEmitter<boolean>();
   @ViewChild('content') content: any;
 
-  image = '/assets/shared/product-placeholder.jpg';
-  text = '';
+  image: null | string = null;
+  isLoading: boolean = false;
+
+  form = new FormGroup({
+    file: new FormControl('', [Validators.required]),
+    text: new FormControl(''),
+  });
 
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {}
   open() {
     this.modalService
-      .open(this.content, { ariaLabelledBy: 'modal-basic-title' })
+      .open(this.content, { centered: true, size: 'lg' })
       .result.then((result) => {
-        this.hasToClose.emit(true);
+        this.hasToClose.emit(false);
       });
   }
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
     if (changes['show'].currentValue === true) {
-      console.log('showing modal');
-      this.modalService.open(this.content, {
-        ariaLabelledBy: 'modal-basic-title',
-      });
+      this.open();
     } else {
       this.modalService.dismissAll();
+    }
+  }
+  submit() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+      this.modalService.dismissAll();
+      this.hasToClose.emit(false);
+    }, 1000);
+
+    console.log('submit');
+  }
+  getValidation(name: string): any {
+    return this.form.get(name)?.invalid && this.form.get(name)?.touched
+      ? true
+      : false;
+  }
+  onFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    if (target.files && target.files[0]) {
+      const file = target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e) => (this.image = reader.result as string);
+
+      reader.readAsDataURL(file);
     }
   }
 }

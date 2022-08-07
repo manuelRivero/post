@@ -6,7 +6,7 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { BootstrapModule } from '../bootstrap/bootstrap.module';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContentGeneratorComponent } from './content-generator/content-generator.component';
 import { MediaModalComponent } from './media-modal/media-modal.component';
 
@@ -23,7 +23,9 @@ import { MediaModalComponent } from './media-modal/media-modal.component';
     SharedModule,
     BootstrapModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+
 
   ]
 })

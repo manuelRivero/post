@@ -9,19 +9,48 @@
       <span aria-hidden="true">×</span>
     </button>
   </div>
-  <div class="modal-body">
-    <img [src]="image" class="image" alt="image" />
-    <div class="input-group-lg">
-        <input type="text" class="form-control mt-4" [(ngModel)]="text"placeholder="Escribe algo...">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="modal-body">
+      <img *ngIf="image" [src]="image" class="image" alt="image" />
+      <div class="input-group-lg mt-4">
+        <input
+          formControlName="file"
+          type="file"
+          class="form-control"
+          (change)="onFileChange($event)"
+        />
+        <div *ngIf="getValidation('file')">
+          <p
+            class="mb-0 text-danger"
+            *ngIf="form.controls['file'].errors?.['required']"
+          >
+            La imagen es requerida
+          </p>
+        </div>
+        <input
+          type="text"
+          class="form-control mt-4"
+          formControlName="text"
+          placeholder="Escribe algo..."
+        />
+      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-primary"
-      (click)="modal.close('Save click')"
-    >
-      Publicar
-    </button>
-  </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        <span *ngIf="!isLoading; else loader"> Publicar </span>
+        <ng-template #loader>
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </ng-template>
+      </button>
+    </div>
+  </form>
 </ng-template>

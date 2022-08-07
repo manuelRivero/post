@@ -91,9 +91,7 @@
             <a [routerLink]="['/auth', 'login']">Inicia sesión</a>
           </p>
         </div>
-        <div *ngIf="formError$ | async">
-          {{formError$ | async}}
-        </div>
+      
         <div class="register__inputWrapper d-flex justify-content-center mt-4">
           <button type="submit" class="btn btn-primary btn-lg">
             Registrarse
