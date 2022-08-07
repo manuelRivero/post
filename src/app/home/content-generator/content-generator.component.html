@@ -1,0 +1,22 @@
+<div class="content-generator bg-brand-color ">
+  <div class="content-generator__avatarWrapper">
+    <app-user-avatar [showName]="false" [showDate]="false"></app-user-avatar>
+    <div class=" input-group">
+      <input type="text" class="form-control" placeholder="Escribe algo..." />
+      <div class="input-group-append">
+        <span
+          class="input-group-text"
+          style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+          (click)="toggleModal()"
+        >
+          <i class="bi bi-image" style="font-size: 2rem;"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="content-generator__buttonWrapper">
+    <button class="btn btn-primary ">Publicar</button>
+  </div>
+</div>
+{{showModal}}
+<app-media-modal [show]="showModal" (hasToShow)="toggleModal()"></app-media-modal>

@@ -1,0 +1,21 @@
+.content-generator{
+    padding: 1rem;
+    border-radius: .5rem;
+    &__avatarWrapper{
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    &__buttonWrapper{
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1rem;
+        & > button {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+        }
+    }
+}

@@ -7,11 +7,15 @@ import { HomeRoutingModule } from './home-routing.module';
 import { BootstrapModule } from '../bootstrap/bootstrap.module';
 
 import { FormsModule } from '@angular/forms';
+import { ContentGeneratorComponent } from './content-generator/content-generator.component';
+import { MediaModalComponent } from './media-modal/media-modal.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    ContentGeneratorComponent,
+    MediaModalComponent
   ],
   imports: [
     CommonModule,

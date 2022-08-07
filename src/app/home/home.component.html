@@ -1,6 +1,7 @@
 <app-hero-section>
   <section class="home">
     <div class="home__container">
+      <app-content-generator></app-content-generator>
       <div class="" *ngFor="let card of cards">
           <app-post-card [data]="card"></app-post-card>
       </div>

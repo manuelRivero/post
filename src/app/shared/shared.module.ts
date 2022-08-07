@@ -22,6 +22,8 @@ import { UserAvatarComponent } from './user-avatar/user-avatar.component';
     PostCardComponent,
     HeaderComponent,
     HeroSectionComponent,
+    UserAvatarComponent,
+
   ],
 })
 export class SharedModule {}
