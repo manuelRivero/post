@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
@@ -13,7 +14,7 @@ import { HeroSectionComponent } from './hero-section/hero-section.component';
     HeaderComponent,
     HeroSectionComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HttpClientModule],
   exports: [
     ButtonComponent,
     ProductCardComponent,
