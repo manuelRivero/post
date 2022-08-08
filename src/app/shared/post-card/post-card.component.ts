@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger, query, keyframes } from '@angular/animations';
 import { Component, Input, OnInit, SimpleChanges, OnChanges, Renderer2, ViewChild, ElementRef } from '@angular/core';
 
 interface Data {
@@ -9,7 +10,36 @@ interface Data {
 @Component({
   selector: 'app-post-card',
   templateUrl: './post-card.component.html',
-  styleUrls: ['./post-card.component.scss']
+  styleUrls: ['./post-card.component.scss'],
+  animations:[
+    trigger('menuAnimation', [
+      transition('* => *', [
+        query(':enter', animate('.5s',  keyframes([
+          style({
+            opacity: 0, transform:'translateY(-100%)'
+          }),
+          style({
+            opacity: 1, transform:'translateY(-110%)', 
+          }),
+          style({
+            opacity: 1, transform:'translateY(-100%)', 
+          })
+        ])), { optional: true }),
+        query(':leave', animate('.5s', 
+        keyframes([
+          style({
+            opacity: 1, transform:'translateY(-100%)'
+          }),
+          style({
+            opacity: 1, transform:'translateY(-110%)', 
+          }),
+          style({
+            opacity: 0, transform:'translateY(-100%)', 
+          })
+        ])), { optional: true }),
+      ])
+    ])
+  ]
 })
 export class PostCardComponent implements OnInit {
   @ViewChild('toggleButton') toggleButton!: ElementRef;

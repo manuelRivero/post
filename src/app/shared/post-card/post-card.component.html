@@ -8,8 +8,8 @@
     <p class="card-text">
       {{ data.text }}
     </p>
-    <div class="reaction-menu-wrapper">
-      <div *ngIf="showMenu" class="reaction-menu">
+    <div [@menuAnimation]="showMenu" class="reaction-menu-wrapper">
+      <div  *ngIf="showMenu" class="reaction-menu">
         <div *ngIf="!isLoading; else loader" #menu >
           <i class="bi bi-emoji-laughing" (click)="toggleLoading(1)"></i>
           <i class="bi bi-emoji-frown" (click)="toggleLoading(2)"></i>
