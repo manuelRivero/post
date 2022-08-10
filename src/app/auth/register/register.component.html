@@ -93,11 +93,12 @@
         </div>
       
         <div class="register__inputWrapper d-flex justify-content-center mt-4">
-          <button type="submit" class="btn btn-primary btn-lg">
+          <button type="submit" [disabled]="!form.valid" class="btn btn-primary btn-lg">
             Registrarse
           </button>
         </div>
       </form>
     </div>
   </div>
+  <app-dialog [show]="showModal" text="hola" (hasToClose)="toggleModal"></app-dialog>
 </app-hero-section>

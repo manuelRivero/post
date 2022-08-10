@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -23,20 +24,13 @@ export class AuthService {
   }
 
   public register(values: any) {
-    // login logic
-
-    console.log('register', values);
    return this.http
-      .post(
-        'https://catarinacci.herokuapp.com/register',
+      .post(environment.api + '/register',
         JSON.stringify(values),
         {
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
           },
         }
       )
@@ -48,7 +42,6 @@ export class AuthService {
     this.user$.next(user)
   }
   set registerError (error:string){
-    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c');
     this.registerError$.next(error)
   }
 }
