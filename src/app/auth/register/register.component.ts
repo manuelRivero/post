@@ -20,6 +20,7 @@ import { CustomValidators } from './custom.validators';
 export class RegisterComponent {
   form: FormGroup;
   formError$: Observable<any> = this.authService.registerError$;
+  showModal: boolean = true;
   constructor(private authService: AuthService, private router: Router) {
     this.form = new FormGroup(
       {
@@ -41,8 +42,8 @@ export class RegisterComponent {
         ),
         confirmPassword: new FormControl('', [Validators.required]),
       },
-      { validators: [CustomValidators.passwordMatchValidator] }
-    );
+      { validators: CustomValidators.passwordMatchValidator }
+      );
   }
 
   getValidation(name: string): any {
@@ -62,5 +63,8 @@ export class RegisterComponent {
       this.router.navigate(['/']);
 
     });
+  }
+  toggleModal() {
+    this.showModal = !this.showModal;
   }
 }
