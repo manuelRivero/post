@@ -23,8 +23,12 @@ export class CustomValidators {
   }
 
   static passwordMatchValidator=(g: FormGroup | any)=> {
-    g.controls['confirmPassword'].setErrors(g.get('password').value === g.get('confirmPassword').value
+    return g.controls['confirmPassword'].setErrors(g.get('password').value === g.get('confirmPassword').value
        ? g.controls['confirmPassword'].errors : {'notSame': true});
-    return g;
+  }
+  static checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
+    let pass = group.get('password')?.value;
+    let confirmPass = group.get('confirmPassword')?.value
+    return pass === confirmPass ? null : { notSame: true }
   }
 }
