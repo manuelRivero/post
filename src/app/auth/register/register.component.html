@@ -2,7 +2,7 @@
   <div class="register">
     <div class="register__container">
       <h1 class="register__title">Registro</h1>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="register__inputWrapper input-group-lg">
           <label for="name">Nombre</label>
           <input
@@ -14,16 +14,25 @@
             placeholder="Nombre"
             [ngClass]="{ 'is-invalid': getValidation('name') }"
           />
-          
-          <div *ngIf="getValidation('name') "class="mt-2">
-            <p class="mb-0 text-danger"*ngIf="form.controls['name'].errors?.['required']">
-                El nombre es requerido
+
+          <div *ngIf="getValidation('name')" class="mt-2">
+            <p
+              class="mb-0 text-danger"
+              *ngIf="form.controls['name'].errors?.['required']"
+            >
+              El nombre es requerido
             </p>
-            <p class="mb-0 text-danger"*ngIf="form.controls['name'].errors?.['minlength']">
-                Minimo 3 caracteres
+            <p
+              class="mb-0 text-danger"
+              *ngIf="form.controls['name'].errors?.['minlength']"
+            >
+              Minimo 3 caracteres
             </p>
-            <p class="mb-0 text-danger"*ngIf="form.controls['name'].errors?.['onlyChar']">
-                Solo se permiten letras
+            <p
+              class="mb-0 text-danger"
+              *ngIf="form.controls['name'].errors?.['onlyChar']"
+            >
+              Solo se permiten letras
             </p>
           </div>
         </div>
@@ -38,9 +47,12 @@
             placeholder="Email"
             [ngClass]="{ 'is-invalid': getValidation('email') }"
           />
-          <div *ngIf="getValidation('email') "class="mt-2">
-            <p class="mb-0 text-danger"*ngIf="form.controls['email'].errors?.['required']">
-                El email es requerido
+          <div *ngIf="getValidation('email')" class="mt-2">
+            <p
+              class="mb-0 text-danger"
+              *ngIf="form.controls['email'].errors?.['required']"
+            >
+              El email es requerido
             </p>
           </div>
         </div>
@@ -55,14 +67,19 @@
             placeholder="Contraseña"
             [ngClass]="{ 'is-invalid': getValidation('password') }"
           />
-          <div *ngIf="getValidation('password') "class="mt-2">
-            <p class="mb-0 text-danger" *ngIf="form.controls['password'].errors?.['required']">
-                La contraseña es requerida
+          <div *ngIf="getValidation('password')" class="mt-2">
+            <p
+              class="mb-0 text-danger"
+              *ngIf="form.controls['password'].errors?.['required']"
+            >
+              La contraseña es requerida
             </p>
-            <p class="mb-0 text-danger" *ngIf="form.controls['password'].errors?.['minlength']">
-                Minimo 6 caracteres
+            <p
+              class="mb-0 text-danger"
+              *ngIf="form.controls['password'].errors?.['minlength']"
+            >
+              Minimo 6 caracteres
             </p>
-
           </div>
         </div>
         <div class="register__inputWrapper input-group-lg">
@@ -76,14 +93,20 @@
             placeholder="Confirme su contraseña"
             [ngClass]="{ 'is-invalid': getValidation('confirmPassword') }"
           />
-          <div *ngIf="getValidation('confirmPassword') "class="mt-2">
-            <p class="mb-0 text-danger" *ngIf="form.controls['confirmPassword'].errors?.['mismatch']">
-                Las contraseñas no coinciden
+          <div *ngIf="getValidation('confirmPassword')" class="mt-2">
+            <p
+              class="mb-0 text-danger"
+              *ngIf="form.controls['confirmPassword'].errors?.['mismatch']"
+            >
+              Las contraseñas no coinciden
             </p>
-            <p class="mb-0 text-danger" *ngIf="form.controls['confirmPassword'].errors?.['minlength']">
-                Minimo 6 caracteres
+            <p
+              class="mb-0 text-danger"
+              *ngIf="form.controls['confirmPassword'].errors?.['minlength']"
+            >
+              Minimo 6 caracteres
             </p>
-        </div>
+          </div>
         </div>
         <div class="register__inputWrapper input-group-lg">
           <p>
@@ -91,14 +114,27 @@
             <a [routerLink]="['/auth', 'login']">Inicia sesión</a>
           </p>
         </div>
-      
+        <div *ngIf="formError$ | async" class="register__inputWrapper ">
+          <p>{{formError$ | async}}</p>
+        </div>
         <div class="register__inputWrapper d-flex justify-content-center mt-4">
-          <button type="submit" [disabled]="!form.valid" class="btn btn-primary btn-lg">
+          <button
+            type="submit"
+            [disabled]="!form.valid"
+            class="btn btn-primary btn-lg"
+          >
             Registrarse
           </button>
         </div>
       </form>
     </div>
   </div>
-  <app-dialog [show]="showModal" text="hola" (hasToClose)="toggleModal"></app-dialog>
+  <app-dialog
+    text="Ahora puedes iniciar sesión en la plataforma"
+    buttonText="¡Entendido!"
+    title="Registro exitoso"
+    [cb]="dialogCallBack"
+    [show]="showModal"
+    (hasToClose)="toggleModal()"
+  ></app-dialog>
 </app-hero-section>

@@ -7,6 +7,9 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { UserAvatarComponent } from './user-avatar/user-avatar.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { BootstrapModule } from '../bootstrap/bootstrap.module';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +18,7 @@ import { UserAvatarComponent } from './user-avatar/user-avatar.component';
     HeaderComponent,
     HeroSectionComponent,
     UserAvatarComponent,
+    DialogComponent,
   ],
   imports: [CommonModule, RouterModule, HttpClientModule],
   exports: [
@@ -23,6 +27,9 @@ import { UserAvatarComponent } from './user-avatar/user-avatar.component';
     HeaderComponent,
     HeroSectionComponent,
     UserAvatarComponent,
+    DialogComponent,
+    BootstrapModule
+
 
   ],
 })

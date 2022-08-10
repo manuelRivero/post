@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './../auth.service';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -17,11 +17,11 @@ import { CustomValidators } from './custom.validators';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements  OnDestroy{
   form: FormGroup;
   formError$: Observable<any> = this.authService.registerError$;
-  showModal: boolean = true;
-  constructor(private authService: AuthService, private router: Router) {
+  showModal: boolean = false;
+  constructor(private authService: AuthService, public router: Router) {
     this.form = new FormGroup(
       {
         name: new FormControl(
@@ -43,28 +43,41 @@ export class RegisterComponent {
         confirmPassword: new FormControl('', [Validators.required]),
       },
       { validators: CustomValidators.passwordMatchValidator }
-      );
+    );
   }
 
   getValidation(name: string): any {
-    console.log('getValidation', name);
     return this.form.get(name)?.invalid && this.form.get(name)?.touched
       ? true
       : false;
   }
   onSubmit() {
     console.log(this.form.value);
-    this.authService.register(this.form.value).subscribe((res: any) => {
-      this.authService.user = { name: res.name, email: 'res.email' };
-      this.router.navigate(['/']);
-    }, (error) => {
-      console.log("error", error)
-      this.authService.registerError = "error";
-      this.router.navigate(['/']);
-
-    });
+    this.authService.register(this.form.value).subscribe(
+      (res: any) => {
+        this.showModal = true;
+        this.authService.user = { name: res.name, email: 'res.email' };
+      },
+      (error) => {
+        Object.keys(error.error.errors).forEach((key) => {
+          console.log("error", error.error.errors[key][0])
+          this.authService.registerError = error.error.errors[key][0];
+        });
+      }
+    );
   }
+
   toggleModal() {
+    console.log('toggleModal');
     this.showModal = !this.showModal;
+  }
+  dialogCallBack = () => {
+    this.toggleModal();
+    this.router.navigate(['/']);
+  };
+  ngOnDestroy() {
+    this.form.reset()
+    this.authService.registerError = null;
+
   }
 }

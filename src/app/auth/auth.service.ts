@@ -24,24 +24,24 @@ export class AuthService {
   }
 
   public register(values: any) {
-   return this.http
-      .post(environment.api + '/register',
-        JSON.stringify(values),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
-      )
+    return this.http.post(
+      environment.api + '/register',
+      JSON.stringify(values),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
   }
   get getFormError() {
-    return this.registerError$.asObservable()
+    return this.registerError$.asObservable();
   }
-  set user (user:User){
-    this.user$.next(user)
+  set user(user: User) {
+    this.user$.next(user);
   }
-  set registerError (error:string){
-    this.registerError$.next(error)
+  set registerError(error: string | null) {
+    this.registerError$.next(error);
   }
 }
