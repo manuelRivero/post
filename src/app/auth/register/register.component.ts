@@ -73,7 +73,7 @@ export class RegisterComponent implements  OnDestroy{
   }
   dialogCallBack = () => {
     this.toggleModal();
-    this.router.navigate(['/']);
+    this.router.navigate(['/activation-code']);
   };
   ngOnDestroy() {
     this.form.reset()

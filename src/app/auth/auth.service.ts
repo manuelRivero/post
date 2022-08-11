@@ -35,6 +35,19 @@ export class AuthService {
       }
     );
   }
+  
+  public login(values: any) {
+    return this.http.post(
+      environment.api + '/login',
+      JSON.stringify(values),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
+  }
   get getFormError() {
     return this.registerError$.asObservable();
   }
