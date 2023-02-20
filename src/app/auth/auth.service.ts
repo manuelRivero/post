@@ -12,6 +12,7 @@ const helper = new JwtHelperService();
 export class AuthService {
   token = localStorage.getItem('token');
   registerError$ = new BehaviorSubject<string | null>(null);
+  loginError$ = new BehaviorSubject<string | null>(null);
   user$ = new BehaviorSubject<User | null>(null);
 
   constructor(private http: HttpClient) {}
@@ -35,18 +36,23 @@ export class AuthService {
       }
     );
   }
-  
+
   public login(values: any) {
-    return this.http.post(
-      environment.api + '/login',
-      JSON.stringify(values),
-      {
+    this.http
+      .post(environment.api + '/login', JSON.stringify(values), {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
-      }
-    );
+      })
+      .subscribe(
+        (res: any) => {
+          this.user$.next(res);
+        },
+        (error) => {
+          this.loginError$.next('error');
+        }
+      );
   }
   get getFormError() {
     return this.registerError$.asObservable();

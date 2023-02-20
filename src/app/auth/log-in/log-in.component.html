@@ -2,20 +2,20 @@
     <div class="login">
         <div class="login__container">
             <h1 class="login__title">Login</h1>
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="submit()">
                 <div class="login__inputWrapper input-group-lg">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" />
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" formControlName="email" />
                 </div>
                 <div class="login__inputWrapper input-group-lg">
                     <label for="password">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" />
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" formControlName="password" />
                 </div>
                 <div class="login__inputWrapper input-group-lg">
                     <p>No tienes cuenta ? <a [routerLink]="['/auth', 'register']">Registrate</a></p>
                 </div>
                 <div class="login__inputWrapper d-flex justify-content-center mt-4">
-                    <button type="button" class="btn btn-brand-color-blue btn-lg">Iniciar sesión</button>
+                    <button type="submit" class="btn btn-brand-color-blue btn-lg">Iniciar sesión</button>
                 </div>
             </form>
         </div>
